@@ -1,0 +1,1842 @@
+
+
+
+#################
+Java Collections   Note: all java collections interfaces and classes are belongs from java.util package
+#################
+
+
+        1) Why we need to go for collections 
+
+        2) What is collection framework
+
+        3) Collections Hierarchy
+
+        4) List interface and implementations
+
+        5) Set interface and implementations
+
+        6) Queue interface and implementations
+
+        7) Map interface and implementations
+
+        8) Cursors
+
+        10) Collections Sorting
+
+         # Collections Sorting (Comparator)
+         # Fail-Fast and Fail-Safe Collections
+         # Properties class
+         # Collection Usecases
+         # java.util.Data and java.util.Calender
+         # java.util.String Tokenizer
+
+
+
+
+
+
+
+
+   ###########
+   Collections
+   ###########
+
+
+
+1) Why we need to go for collections 
+==========================================
+
+-> Primitive Data Types are used to store single value into a variable
+
+
+int x = 10;
+
+int y = 20;
+
+int z = 30
+
+
+-> If we want to store 1000 values, then we need to declare 1000        
+   variables in program 
+
+which is not at all recommended.
+
+
+
+
+Array
+=====
+
+
+-> To store multiple values into single variable then we can use Arrays  
+     concept.
+
+-> Array is an collection of fixed number of homogeneous data elements 
+
+OR
+
+-> An array represents a group of elements of same data type.
+
+-> The main advantage of array is we can represent huge number of 
+    elements by using 
+
+ single variable. So, the readability of the code is improved.
+
+int[ ] arr = new int [5];
+
+arr[0] = 100;
+
+arr[1] = 200;
+..
+
+arr[4] = 500;
+
+
+Limitations of array:  // here hetrogenous data problem and size fixed problem
+=====================
+
+-> Arrays size is fixed 
+-> We can store only homogenious values ( same type of values)
+
+  Students s[] = new Student[100]
+
+  s[0] = new Student(10 , "Raju"); 
+
+  s[1] = new Student( 11 , "Rani");
+
+  s[2] = new Employee( 101 , "Ramesh");  // Invalid
+
+
+
+
+  Object Array  // hetrogeneous data problem got solved but size fixed problem
+  ============
+
+  Object is the default super class for all the classes in java  available in java.lang package
+
+
+  Object is super class and Student is sub class so super class object can hold sub class object
+
+  Object[] a = new Object[100];
+
+  a[0] = new Student(101 , "Raju");
+
+  a[1] = new Employee(101 , "Rani" , 10000.0)
+
+
+  -> For every requirement we have to write the code explicitly like insert, retrieve, update, 
+     sort etc.. in Array and object array
+
+
+
+
+
+To overcome the primitive and arrays limitations, we should go for collection concept.
+==================================================================
+
+-> Collections are used to store group of values / objects 
+
+-> Collections are growable in nature ( means dynamically collections size can be increase and decrease based on data)
+
+-> We can store any type of data in Collections (homogeneous and heterogeneous).
+
+-> Collections providing predifined methods to insert , update , delete , retrive , sort etc
+
+-> Collections is a entity which is used to store group of Objects 
+
+
+
+
+
+
+================================================================================================================================================
+================================================================================================================================================
+
+2) What is collection framework
+================================
+
+
+Collection: Collections  represent a group of objects , group of objects called elements 
+
+
+Collection framework: It defines several classes and interfaces to represent a group of 
+Objects as single entity.
+
+
+
+Multithreading      // why they dont called as framework
+Inner Classes 
+Exception Handling 
+
+Collection   -> Collections Framework    // why called framework
+
+
+Framework means readymade software // means predefine method  to sort , insert , update , delete
+
+
+Collections is called as framework because it is providing predefine interfaces , classes and methods to perform operations on data
+
+
+
+
+
+
+Diff between Arrays and Collections
+====================================
+
+
+Arrays                                          Collections
+======= =====================================================
+
+-> Arrays size is fixed                -> Collections are growable in nature
+
+-> With respect to memory ,            -> With respect to memory ,
+   arrays are not recommende to use       Collections are recommende to use
+
+-> With respect to performance         -> With respect to performance 
+   arrays are recommended to use          Collections are not recommended to use
+
+-> Arrays can hold only homogenious    -> Collections can hold both homogenious
+   data type elements                     and hetrogenious data type elements
+
+-> Arrays can hold both Primitive      -> Collections can hold only Objects 
+   and Objects
+ 
+
+================================================================================================================================================
+================================================================================================================================================
+
+########################
+ Collection Hierarchy
+########################
+
+ 1) Iterable    ( parent for all collections)   (from java 1.5 available)
+ 2) Collection  (child of iterable interface)
+ 3) List        ( child of Collection interface)
+ 4) Set         ( child of Collection interface)
+ 5) Queue       ( child of Collection interface)
+
+ 6) Map         ( child of Collection interface)
+
+ Map and Collection interface have no relation both are seprate
+
+ Note : Map interface not from iterable interface
+
+
+
+ Note : 
+      - What is super interface for all collections : Iterable
+      - All collections are interface
+      - List , Set , Queue are in Collection family and Map is in another family
+
+
+
+
+  Q) What is the difference between Collection and Collections and Collections Framework?
+  =================================================================================================
+
+
+     => Collection is conatiner to store group of objects 
+        we have an interface with name Collection in java.util package
+
+     => We have an interface with a name Collection . It is root interface in Collection
+
+     => Collections is a class availble in java.util package
+        (Providing ready made methods to perform operations on the objects)
+
+     => Collection interface and Collection class are part of Collections framework
+        Along with this 2 classes  there are several other classes and interface in Collections framework.
+
+
+
+
+
+4 Main interfaces in collections   Note : if you want to store direct object then go with List, Set,and Queue  
+=================================           and if want to store with key and value format then go with Map
+
+  = Here every collection has it different purpose.
+
+List : It is used to store group of objects . ( duplicates are allowed)
+      ->list interface implements using 4 classes :
+         1) ArrayList 
+         2) Linked list   
+         3) Vector 
+         4) Stack
+
+Set : It is used to store group of objects . ( duplicates are not allowed)
+      -> Set interface implements using 3 classes : 
+         1) HashSet 
+         2) LinkedHashSet 
+         3) TreeSet
+
+Queue : It is used to store group of objects . (FIFO)
+       -> Queue interface implements using 2 classes : 
+         1) PriorityQueue 
+         
+
+Map : It is used to store group of objects . (Key - value pair)
+       -> Map  interface implements using 4 classes : 
+          1) HashMap  
+          2) LinkedHashMap 
+          3) TreeMap 
+          4) Hashtable
+          5) IdentityHashMap
+          6) WeakHashMap
+
+
+   Note: List , Set ,Queue and Map -> we cannot create object dorectly :why
+       List l = new List() // invalid  why
+       interface ->  object cannot create
+
+       List l = new ArrayList() // valid why  because interface refrence variable can hold implementation refrence object
+ 
+   
+    #######
+    Curosor
+    #######
+    
+
+  -> Cursors are used to Iterate collections (means to retrive data from collections)
+
+
+  There are 3 cursors
+
+  1) Iterator
+  2) ListIterator
+  3) Enumeration
+
+
+
+
+  Collection Interface
+  ======================
+
+  -> It is super interface for List , Set and Queue
+
+  -> Some collections allow duplicate elements and others do not 
+
+  -> some are ordered and others are unordered(means insertion order is preserved or not )
+
+  
+  -> Collection interface provideing several methods to store and retrive objects
+
+     they are :
+
+     1) add(Object obj)              : It is used to add object
+
+     2) get(int index)               : to retrive object
+
+     3) remove( int index)           : to remove an object from collection
+
+     4) set(int index , Object obj)  : to insert object at specific index
+
+     5) indexOf(Object obj)          : to get first occurence of object
+
+     6) lastIndexOf(Object obj)       : to get last occerance of object 
+
+     7) listIterator()               :to iterate collection objects
+
+
+     Note : This methods also available for List ,Set and Queue
+
+
+
+
+
+===============
+List Interface
+===============
+
+ -> Extending from Collections interface
+
+ -> Allow duplicate objects 
+
+ -> It will maintain objects in insertion order
+
+ -> it is having 4 implementation classes
+
+    1) ArrayList    - growable array  is internal datastructure
+    2) LinkedList   - double linklist  datastructure
+    3) Vector       - Growable array and thread safe datastructure
+    4) Stack        - LIFO datastructure
+
+
+  ============
+   ArrayList
+   ==========
+
+    -> it is a implementation class of list interface
+
+    -> Duplicate objects are allowed 
+
+    -> insertion is preserved  // 10 at index 0 , 20 at index 1
+
+    -> null value are accepted
+
+    -> internal data structure of ArrayList is growable array.
+
+    -> default capacity is 10 
+
+    -> Note ArrayList give wrost performance in adding object at middle order
+      why : all object needs to adjust there position
+      SO : ArrayList pratically not use in insertion purpose
+
+    
+    Note : 
+        1) ArrayList class not recommended for insertion because it has to perform lot of shifting
+
+        2) ArrayList class is recommended for retriveal operations because it will retrive based on index directly.
+
+
+
+    Q) whar is the size of this array
+        ArrayList al = new ArrayList();  ->  size is 10 
+        a[] = new a[1] size is 1
+
+
+   ===========================
+    ArrayList Constructors      
+    ==========================
+
+    Q How many constructor are avaliable in ArraList => 3 // when to use what?
+
+    1) ArrayList al = new ArrayList() ;  // 10 object can store , but more than 10 and we also dont know how many to add , 
+                                           then again capacity is increase by 10 but here time taken process  // growable in nature
+
+    2) ArrayList al = new ArrayList( int capacity)  // if I know the capacity of my object the go for this in project 
+
+    3) ArrayList al = new ArrayList(Collection c) ; collection interface we can pass as parameter 
+                      but for what purpose : if you want to convert one collection into another collection for that purpose
+========================================================================
+========================================================================
+
+   Q) How to make collection as Generic collection
+
+     List l = new ArrayList();   // general collection
+
+     List<Integer> l = new ArrayList<>(); Generic collection
+
+     <> this is generic 
+     means now our collection can store Integer type of data only
+     Now our collection is homogenious only
+
+================================================================================================================================================
+
+    Q) What is the default capacity of ArrayList ,
+       if it reached to its default capacity what will happent ,
+       what is internal data structure of ArrayList 
+
+       => internal Structure is => growable array
+
+
+    ======================
+    Methods of ArrayList
+    ======================
+
+
+    1) add() : add object at last index
+    1) add(int index , Object obj)
+    2) addAll(Collection c)       :  one collection can add into another collection
+    3) remove(Object obj)
+    4) remove(int index)          : remove object through index number
+    5) get(int index)             : to get 
+    6) contains(Object obj)       : to check given object is present or not 
+    7) clear()                    : to remove every thing from the collection
+    8) isEmpty()                  : collection is empty or not empty
+    9) retainAll(Collection c)    :  keep only this collection object and remove all another collection object 
+    10) indexOf(object obj)       :  to check first occurence | like raju at 1st occurance is available or not |
+    11) lastIndexOf(Object obj)  : to check last occurence | like raju at last occurance is available or not |
+    12) set( int index , Object obj ) : to add object or to replace object  at specific position index number
+    13) iterator()    : forward direction to iterate data 
+    14) listIterator   : to iterate data on both direction( forward and backward)
+    15) retainAll()   : objects of one collection added to objects of another collection   , but duplicate object not added of one collection
+
+
+    What is  difference between addAll() and retainAll() method
+    #############################################################
+
+
+      List l = new ArrayList();
+
+          l.add(100);
+          l.add(200);
+          l.add(300);    // [100,200,300]
+          l.add(0, 200)  //  [200,100,200,300]
+          l.add(null) 
+          l.add(100)    // [50, 100 , 200 , 300 , null , 100]
+          l.set(0,50)    // [50,100,200,300]
+          l.contains(600) // false  sysout(l.contains(600))
+          l.get(0)        // 50    sysout(l.get(0))
+          l.get(100)      // error  indexBoundOfException
+          l.IndexOf(100)  // gives index number of 100 which is 1 index number
+          l.lastIndexOf(100) //  gives 5 index numebr
+          l.indexOf(444)    // gives -1  " of gicen index is not present  then gives -1"
+          l.clear()    // [] all object delete
+          l.size()     // [50, 100 , 200 , 300 , null , 100]  size of this collection is 6
+
+
+          List l2 = new ArrayList()
+          l2.add(400);
+          l2.add(500);
+          l2.add(600);
+          l2.add(100)
+          l2.add(700);    // [400,500,600,100,700]
+
+          l2.addAll(l1)  //  [400,500,600,100,700 , 50, 100 , 200 , 300 , null , 100]
+
+          l2.addAll(0,l1) //  [50, 100 , 200 , 300 , null , 100 , 400,500,600,100,700]
+
+          l2.retainAll(l1)  // [400,500,600,100,700 , 50, 200 , 300 , null ]    // here 100 of 1st are removed
+  
+
+
+    
+    Different ways to Traverse(Iterate) the collection
+    ====================================================
+
+    1) for() loop
+    2) for( ) each loop
+    3) iterator() - cursor( forward)  this is universal cursor  ( for list and set it is used so called universal)
+    4) listIterator - cursor( forward + back) ( only used for List implementation classes) not for set
+    5) forEach() method (using java 1.8 method) ( lambda expression)
+
+
+
+    1) for() loop
+    ==========
+
+         ArrayList al = new ArrayList();
+         a1.add(10);
+         a1.add(20);
+         a1.add(30);
+         a1.add(40);
+
+         for(int i=0 ; i<size() ; i++){     // size() method to get array index
+          Sysout(a1.get(i));                // i start from 0 beacuse array index is 0
+         }
+         
+     2) for() each loop
+     ===================
+
+         ArrayList al = new ArrayList();
+         a1.add(10);
+         a1.add(20);
+         a1.add(30);
+         a1.add(40);
+
+         for(Object obj : a1){   // why not for(int i: a1)
+         sysyout(obj);              data in collection is object  and we not specify <Integer> generics
+
+         }
+
+
+      3) iterator()   = a1.iterator()   return type is Iterator
+      ================ 
+
+         ArrayList al = new ArrayList();
+         a1.add(10);
+         a1.add(20);
+         a1.add(30);
+         a1.add(40);
+
+         Iterator iterator = a1.iterator();  // collections are convert into iterator object
+         white(iterator.hasNext()){         // hasNext means hasNext object is available or not upto iterate
+         Sysout(iterator.next())     // if hasNext object available then give me next object through next() we print
+         }
+
+
+       4) listIterator 
+       ==================
+
+         ArrayList al = new ArrayList();
+         a1.add(10);
+         a1.add(20);
+         a1.add(30);
+         a1.add(40);
+
+         ListIterator listIterator = a1.listIterator();
+         while(listIterator.hasNext()){
+         sysout(listIterator.next());
+         }
+
+
+
+         for reverse object  - we dont get directly previous , 1st go forward and previous 
+         =================
+
+            logic to go forward  ( from index 0 to 3)
+            --------------------
+
+            ListIterator listIterator = a1.listIterator();
+            while(listIterator.hasNext()){
+            sysout(listIterator.next());
+            
+            logic to go previous ( from index 3 to 0)
+            --------------------
+            while(listIterator.hasPrevious()){
+            sysout(listIterator.previous());
+
+
+
+
+       5) forEach() method
+       =====================
+
+         ArrayList al = new ArrayList();
+         a1.add(10);
+         a1.add(20);
+         a1.add(30);
+         a1.add(40);
+
+         a1.forEach(i -> sysout(i))
+
+
+    Note: for Genric collection same methods to apply
+          List<Integer> l = new ArrayList<>(); Generic collection
+
+
+
+
+  Can we store custom objects into Collections 
+  =============================================
+
+  => yes , using Generics  we can do 
+==========
+      public class Student{
+
+      int id;
+      String name;
+
+
+      Student(int id , String name){
+
+      this.id=id;
+      this.name=name;
+
+      }
+
+      }
+=========
+
+      public class Demo{
+
+           public static void main(String[] args){
+
+           ArrayList<Student> al = new ArrayList<>();
+
+           al.add(new Student( 1, " Raju"));
+           al.add(new Student( 2, " Rani"));
+           al.add(new Student( 3, " Rekha"));
+           al.add(new Student( 4, " Bali"));
+
+           for(Student s: al){
+           sysout(s);
+           }
+
+
+           }
+	
+      }
+
+
+
+
+  ==============
+   LinkedList
+   =============
+
+   -> same as ArrayList
+
+   -> No default capacity  why data structure is double in linklist so 
+
+   -> only differnce is internal data structure is double-link in Linklist
+
+   -> double link means  =>   10 -> 20 -> 30 ( 10 is connected to 20 and 20 is connected to 10)
+                                 <-    <-
+   -> here 10 is one node ( node means connected by front and back)
+
+   -> if we add a1.add(1,23) // here between 10 and 20 new link is created to add the 23 node // links are not shifted
+
+   -> In real when to use LinkList => in your requirement when more inserting data is there then linklist is recommended
+
+   -> problem with linklist is when retrive data it takes lot of time because always data retrive form head strart point  to reach 1lakh index number  it also start from head index 0  // so not recommended to retrive the data it is slow
+
+
+
+
+  =========
+   Vector    not we used insted we use arraylist only change in vector is it is synchronize
+   ========
+
+    -> Implementation class of List interface 
+
+    -> Internal data structure is growable
+
+    -> duplicate are allowed
+
+    -> Insertion order preserved 
+
+    -> this is synchronized  // 1 thread access at one time
+
+    -> Vector is called as Legacy class( Legacy class means from java 1.0 v classes available )
+
+    -> Enumeration is used to iterate the data  because it is from JDK 1.0
+
+    -> Enumeration also called as legacy cursor
+
+
+
+   =========
+    Stack      - it is legacy
+    ========
+
+    -> Implementation class of List interface 
+
+    -> Extending from Vector class
+
+    -> Data structure of stack is LIFO ( last in first out ) like bangles in hand last in first out
+
+    -> push() --> to insert object 
+
+    -> peak() --> to get last element 
+
+    -> pop()  --> to remove last element
+
+
+
+
+
+
+    =========
+     Set
+     ======
+
+     -> Set is interface available in java.util package
+
+     -> Set interface extending from Collection interface
+
+     -> Set is used to storre group of objects 
+
+     -> Duplicate objects are not allowed
+
+     -> Supports Homogenious and Hetrogenious values
+
+
+
+     Set interface impelementation classes
+     =======================================
+
+
+       1) HashSet
+       2) LinkHashSet
+       3) TreeSet
+
+
+
+
+      HashSet   - internally using HashMap
+      ========
+
+      -> Implementation class for Set interface
+
+      -> Duplicate are not allow
+
+      -> Null is allowed
+
+      -> Insertation order is not maintained
+
+      -> initital capacity is 16   or default capacity
+
+      -> Load Factor is 0.75 = 75%    // once 75% load factor is reaches then new HashSet is created by copying the old data into new HashSet
+
+      -> Internal Data structure is Hashtable
+
+
+
+      Note: Data store in HashSet is in 
+
+
+
+==============================
+      publi class Demo{
+
+          public static void main(String[] args){
+
+           HashSet<String> hs = new HashSet<>();
+
+           hs.add("one");
+           hs.add("two");
+           hs.add("three");
+           hs.add("four");
+           hs.add("null");
+
+           Sysyout(hs)    // [ four , two ,null, one , three ] // insertion order not preserved
+
+          }
+      }
+ ============================
+
+
+ Q) Can we crate our own initial capacity and our own default load factor 
+   => 
+   HashSet hs = new HashSet(int capacity , float loadFactor);
+
+   HashSet<String> hs = new HashSet<>( 100 , 10.05f);
+
+
+
+
+   COnstructor  fo HashSet
+   ========================
+
+
+   1) HashSet hs = new HashSet();
+
+   2) HashSet hs = new HashSet(int capacity);
+
+   3) HashSet hs = new HashSet(int capacity , float loadFactor);
+
+   4) HashSet hs = new HashSet(Collection obj);
+
+
+
+   =================
+   LinkedHashSet
+   ==============
+
+      -> Implementation class for Set interface
+
+      -> Duplicate are not allow
+
+      -> Null is allowed
+
+      -> Insertation order is  maintained
+
+      -> Internal Data Structure is Hash Table + Double linked list
+
+      ->  load factor 0.75  and initial capacity 16
+
+
+      Note: HashSet will not maintain insertion order where as LinkedHashSet will maintain insertion order
+
+           HashSet will follow Hashtable data structure where as LinkedHashSet will follow Hashtable + Double Linked list data Structure
+
+      
+
+      =======
+      TreeSet   -Special ( in real when you want to store the data in natural sorting order then use this TreeSet)
+      ========
+
+      -> Sort data in natural sorting order( Assending or number order )
+
+      -> null not allowed 
+
+      -> Homogenious values onlu stored w// why because of internally sorting techniqeu
+
+      -> internal data Structure is binary tree
+
+      -> DUplicate not allowed // because of sorting
+
+      Note : TreeSet should perform sorting so always it will compare new added object . 
+      In order to compare objects should be of same type other wise we get ClassCastException
+
+      When we add null value it will try to compare null value with previous object then we will get NullPointerException
+
+
+
+
+      Ex:
+========================
+       
+       public class Demo{
+           public static void main(String[] args){
+
+           TreeSet ts = new TreeSet();
+
+           ts.add(4);
+           ts.add(2);
+           ts.add(5);
+           ts.add(1);
+           ts.add("raju")   // not allowed
+           -------------------------------------
+           ts.add("Raju");
+           ts.add("jayesh");
+           ts.add("Abhi");
+           ts.add("Bushan");
+
+           sysout(ts)   // output [ abhi , bhushan , jayesh , raju]
+           }
+       }
+
+
+
+
+
+
+         Difference bet HashSet  and LinkedHashSet
+         ==========================================
+
+
+          - commom points 
+             -> duplicate not allowed
+             -> null allowed
+             -> capacity 16 default
+             -> Load Factor 0.75
+
+        - difference 
+          In HashSet 
+             - no insertion order
+             - hashtable dataStructure
+             - 
+          In LinkedHashSet
+             - insertion order
+             - hashtable + double linked list  data structure
+
+
+   Q) Why other Collections support Homogenious and hetrogenious and why only TreeSet support only Homogenious 
+   => Because of sorting order data store so only homogenious in TreeSet
+   
+   Q Why TreeSet not support Hetrogenious objects 
+   => Because need to set data in Sorting order , so in order to compare the object the object should ne same type
+
+   Q Why treeset not accepting null values
+   s
+   Q What is binary tree data structure -> data store in sorting order
+
+
+                       --  ArrayList--         --LinkedList--       --Stack--       --Vector--        --HashSet--       --LinkedHashSet--       --TreeSet
+                       ======================================================================================================================================
+
+1) Dublicate               Allow                   Allow              Allow          Allow             Not Allow           Not Allow             Not Allow
+
+2) Insertion order       Maintian                Maintian           Maintian        Maintian           Not Maintian        Maintian              Not Maintian
+
+3) Null Value             Yes                     Yes                 Yes             Yes                 Yes               Yes                    No
+
+4) DataStructure        Growable array           Double LL           LIFO           G- Array           Hashtree         Hashtree + Double LL     Binary tree
+  
+5) Capacity                10                  no capacity          no capacity       10                 16                   16                no capacity
+
+6) Load-Factor          Not applicable         Not applicable      Not applicable    Not applicable       0.75               0.75               Not applicable
+
+7) Sort order             ----                      -------          --------           -------           ----               ----             maintain sort order
+
+8)Homogeneous +         yes                     yes                yes               yes                yes                   yes              only Homogeneous
+  Hetrogeneous 
+
+ 
+
+
+                  Iterator                        ListIterator                             Enumeration
+                  =====================================================================================
+
+1) Forward        support                      support                                    support 
+
+2) BackWord       not                          support                                      not
+
+3) List          support                       support                                     only( Vectory and stack support)
+
+4) Set           support                         Not                                        Not                              
+
+5) Remove        support                        support                                     Not
+
+(removing the object while iterating the collection)
+
+6) Legacy         No                             No                                        support
+
+
+
+
+
+
+
+
+
+     =====  
+     Map    : Note: Cursors cannot be use to iterate Map , insted "entrySet()" is to iterate the Map
+     =====
+
+       *****IMP****Note: How HashMap works internally Imp Q**********
+
+     -> Map is an interface available in java.util package
+
+     -> Map is used to store the data in key value pair 
+
+     -> One key- value pair i called as One Entry
+
+     -> One map object can have multipe entries
+
+     -> In Map keys should be unique and values can be dublicate
+
+     -> If we try dublicate key in Map then it will replace old key data with new key data
+
+     -> we can take key value as any type of data
+
+     -> key and value can be any thing based on the requirement
+
+
+
+     Note: Key data type is anything - integer , string , 
+          sometimes key can be string value can be integer
+          India - 120 crore
+          india - key
+
+     Map< K , V > => Map<Object , Object>
+
+        key   = Object
+        value = Object 
+
+    Ex:1
+       1  Nilesh
+       2  Raju
+
+    Ex:2
+
+       Inida 120 cores
+
+    =======================================
+    Implementation classes of Map Interface
+    ========================================
+      
+      1) HashMap   
+      2) LinkedHashMap
+      3) TreeMap
+      4) Hashtable
+      5) IdentityHashMap
+      6) WeakHashMap
+       
+       // why this much implementation classes
+         because every implementation class have its own data structure 
+         How they store the data 
+         wheather they will maintain insertion order or not , 
+         null value accept or not
+
+       
+       Methods of Map Interface -> to get all methods go to -> www.java.utils.map
+       ========================
+
+       1) put(k,v)       ->  To insert one entry in map object
+       2) get(k)         -> To get value based on given key
+       3) remove(k)      -> To remove one entry based on given key
+       4) containsKey(k) -> To check presence of entry based on key
+       5) keySet()       ->  To get all keys( only keys) of map 
+       6) values()       ->  To get all values(only values) of the map
+       7) entryset()     -> To get all entries of map
+       8) clear()        -> To remove all the entry of the map
+       9) isEmpty()      -> to check map is entry or not
+       10) size()        -> to get size of map( how many entries available)
+
+
+
+       example:
+       =======
+           Map<Integer,String> map = new HashMap<>();
+
+           map.put(101,"John");
+           map.put(102,"smith");
+           map.put(103,"Raju");
+           
+           System.out.println(map.size());            --->// 3
+           System.out.println(map.get(101);           ---> John
+           System.out.println(map.containsKey(102));  --->//true
+           System.out.println(map.containsKey(120));  --->//false
+           System.out.println(map.isEmpty());         --->//false
+           System.out.println(map);                   --->//{101=John , 102=Smith , 103= Rajy} String class  toString method  called
+
+           Set<Integer> keySet = map.keySet();
+           for(Integer key : keySet){
+           Systemout.println(key);    ///   101 , 102 , 103 
+
+           Collection<String> values = map.values();   // note return type of values() method is collection , means what , this method is from Collection interface
+           for(String v : values){
+           Systemout.println(v);   //  John , Smith , Raju
+
+          Set<Entry<Integer,String>> entrySet= map.entrySet();   // Entry return type is sub type of Set interface
+          Iterator<Entry<Integer , Stirng>=entrySet.iterator(); // for set we can use cursor
+          while(iterator.hasNext()){
+          Entry<Integer ,String> entry = iterator,next();
+          System.out.println(entry.getKey() +  entry.getValue());
+          }
+
+           }
+
+    Interview Q) can we use iterator on Map => mostly ask question
+    ==================================================================
+ 
+        logic to get all keys and values of Map
+
+         Set<Entry<Integer,String>> entrySet= map.entrySet();   // Entry return type is sub type of Set interface
+
+          Iterator<Entry<Integer , Stirng>=entrySet.iterator(); // for set we can use cursor
+
+          while(iterator.hasNext()){
+
+          Entry<Integer ,String> entry = iterator,next();
+
+          System.out.println(entry.getKey() +  entry.getValue());
+
+          
+        }
+
+        using for() each loop  - easy way
+        =======================
+
+        for(Entry<Integer , String> entry : entrySet){
+           System.out.println(entry.getKey() + entry.getValue)
+        }
+
+  
+
+
+    ========
+    HashMap
+    =========
+
+   -> Ut is impl class of Map interface
+   
+   -> Used to store data in key and value
+
+   -> Default capacity is 16
+
+   -> Load factore is 0.75
+
+   -> Underlying datastructure is hashtable
+
+   -> Insertion  order will not be maintain , because it is using hashtable as data structure
+
+     
+  
+ ==================
+    LinkedHashMap
+    =============
+
+    -> Impl class of Map Interface
+
+    -> Maintains insertion order
+
+    -> Data structure is hashtable + double linkedlist
+
+
+
+
+    ========
+    TreeMap
+    ========
+
+    -> Impl class of Map Interface
+
+    -> It maintains sorted order( natural sorting order)// sorting is based on the key
+
+    -> Internal data structure for Tree map is binary tree
+
+
+
+    Hashtable    : initial , collection is not available in market Hashtable is come in concept
+    =========
+
+    -> It is imple class of Map interface
+
+    -> Default capacity is 11
+
+    -> Load factor is 0.75
+
+    -> key value format to store the data 
+
+    -> Hashtable is legacy class ( from jdk 1.0v)
+
+    -> Hashtable is synchronized ( only one thread is access at one time)
+
+    -> HashMap is recommended to used in place of Hashtable 
+
+    -> ConcurrentHashMap
+
+    Note : if thread safety is not required then use HashMap insted of Hashtable
+         : if thread safety is important then go for ConcurrentHashMap insted of Hashtable
+
+
+
+
+
+  
+
+    ========
+    Queue     PriorityQueue and ArrayDeque are impl classes
+    ========
+
+
+    -> It is extending properties from Collection interface
+
+    -> It is used to store group of objects
+
+    -> Internal data structure is FIFO ( first in first out)
+
+    -> It is ordered list of objects
+
+    -> Newly inserted object will be added at the end of the collection
+
+    -> Removal will happen at begining of the collection
+
+    -> 
+
+
+
+  Remaining topics
+  =================
+
+   # Collections Sorting (Comparator)
+   # Fail-Fast and Fail-Safe Collections
+   # Properties class
+   # java.util.Data and java.util.Calender
+   # java.util.String Tokenizer
+
+
+
+
+   Properties Class in Java  // this is one file to store data in key and value format
+   ===================          and application loosely coupled
+
+
+   -> Properties is a predefine class available in java.util.package
+
+   -> Properties class extending properties from Hashtable class
+
+   -> Properties class is used to avoid hardcoding in the project
+
+   -> Hardcoading means fixing values in the program ( ex : database properties)
+      // this makes tightly couple application
+
+
+   uses cases
+   ==========
+
+   -> If java application wants to communicate with database , then we need to use database credentials in java program
+
+   -> if we hardcode database credentials in java program then maintaince will become difficult  , 
+       why because  in future if database credentials is modified then we need to modify our java program also . 
+       If java program is modified then we need to recompile and re-execute our program/ project which will take lot of timenand it may break existing code
+
+   -> To overcome above  problems we should not do hardcoading.
+
+   -> To avoid hard coading in java projects we will have java.util.Properties class
+
+   -> Properties class are used to read the data from properties file
+
+   -> Properties file contains data in key and value format
+      ex: 
+         uname = Nilesh
+         pws = Nilesh@123
+
+   -> Note : Properties file extension will be .properties
+
+
+   Program to demonstrate on properties
+   ======================================
+      
+      database.properties  // properties file name should be extension .properties
+      ===================
+
+      uname=ashokit
+      pwd=ashok@123
+
+    
+
+
+
+   import java.io.FileInputStream;
+   import java,util.Properties;
+
+   public class DatabaseApp{
+
+      public static void main(String[] args){
+      FileInputStream fis = new FileInputStream( "database.properties");  // load properties file here
+
+      Properties p = new Properties();
+      p.load(fis);  // to load all properties from properties file
+
+      System.out.println(p);
+       
+       String uname = p.getProperty("uname");
+       String pwd = p.getProperty("pwd");
+       String driver = p.getProperty("driver");  //key not present
+
+       System.out.println("Username:" + uname);
+       System.out.println("Password:" + pwd);
+       System.out.println("Driver:" + driver); //null
+
+       fic.close();
+
+
+
+    }
+
+   }
+
+
+
+
+
+
+
+  ======================
+   Collections Sorting   (Available from java 1.2v) (readymade methods to sort the data in collections) MIMP in interview
+   ==================
+
+   -> Collections is a container which is used to store group of objects
+
+   -> Note: Collection interface is availble in java.util package
+
+   -> List Set and Queue interface are extending properties of Collection interface
+
+   Note : Collections and Collection both are different
+
+
+
+     Q) What is the difference between Collection and Collections and Collections Framework?
+  =================================================================================================
+
+
+     => Collection is conatiner to store group of objects 
+        we have an interface with name Collection in java.util package
+
+     => We have an interface with a name Collection . It is root interface in Collection
+
+     => Collections is a class availble in java.util package
+        (Providing ready made methods to perform operations on the objects)
+
+     => Collection interface and Collection class are part of Collections framework
+        Along with this 2 classes  there are several other classes and interface in Collections framework.
+
+
+
+    Methods  ( This all are static methods )
+    ========
+
+    1) sort()     Collections.sort(al)   -> to sort collection object in accending order
+    2) reverse()  Collections.reverse(al) -> decending order
+    3) 
+    
+    #####
+    Note:  
+    ##### 
+    if you want to sort objects using  Collections.sort() -- then that object must be implement comparable , then only we can do this other wise not  
+
+
+
+==============================
+
+        al.add(4);   this Integer Object implement Comparable object so we can sort like
+        al.add(2);   Collections.sort();
+        al.add(6);
+        al.add(5);
+        al.add(8);
+        
+        sort collection in accending order
+        Collections.sort( al);  // [2 , 4 , 5 , 6, 8]   // note this Collections class  
+                                                           available from 1.2 version
+
+        reverse collection
+        Collections.reverse(al); //[ 8,6,5,4,2]
+
+==============================
+
+      ### sorting on user define object ###
+       ----------------------------------
+            
+
+         public  class Student{
+            int id;
+            String name;
+            int rank;
+
+            public Student (int id , String name , int rank){
+                this.id = id;
+                this.name = name;
+                this.rank = rank;
+            }
+
+            @Override
+            public String toString(){              //  to print object data so toString()
+              return "Student ["id" = id , "name" = name , "rank" =  rank]";
+            }
+          }
+
+          public class Demo{
+               public static void main(String[] args){
+
+               List<Student> al = new ArrayList<>();
+               al.add( new Student(101 , "John" , 3));
+               al.add( new Student(104 , "John" , 4));
+               al.add( new Student(102 , "John" , 2));
+               al.add( new Student(103 , "John" , 1));
+
+               Collections.sort(al);     // not Applicable here
+               }
+          }
+
+          
+          Note:
+          - In above program we are added integer values in the collection. Integer is a 
+            wrapper and it is implementing Comparable interface allready.
+
+          - IF we want apply sorting on the User defined objects like Student , Employee
+             , Product , Customer etc.  then we have 2 approches.
+
+             1) Comparable ( java.lang)
+             2) Comparator ( java.util)
+            
+            Note: Q) 
+                  what are the two ways to sort the user define object
+                  => by implementing Comparable and Comparator interface 
+
+          
+           Comparable
+           ##########
+
+             - Comparable  is a predefine interface available in java.lang package
+             - Comparable interface having compareTo() method.
+             - compareTo(Object obj) object we have to pass in this method
+             - compareTo() method is used to compare an object with itself and return int value
+              like 
+                  if(obj1 > obj2) ---return +ve number
+
+                  if(obj1 < obj2) ---return -ve number
+
+                  if(obj1 == obj2) ---return zero (0)
+    
+    - Note: -  Comparable interface will allow us to sort  the data based on only one value.
+            
+            - If we want to change our sorting technique then we need to modify the class  
+               which is implementing Comparable interface.
+
+            - To overcome these problem we will go for Comparator interface.
+
+            - Modifing the every time is not recommended
+
+
+====================================
+
+
+               ex: public int comparaTo(Student s){
+                     return this.id - s.id;               //  -- here only id is sort 
+                     return this.name.compareTo(s.name);      -- here onlu name is sort
+                     return this.rank - s.rank;               -- here only rank is sort
+                   }
+
+                Student class
+                #############
+
+                public class Student implements Comparable<Student>{
+
+                      int id;
+                      String name;
+                      int rank;
+
+                      public Student (int id , String name , int rank){
+                          this.id = id;
+                          this.name = name;
+                          this.rank = rank;
+                      }
+
+                      public int comparaTo(Student s){
+                         return this.id - s.id;               //  -- here only id is sort 
+                         return this.name.compareTo(s.name);      -- here only name is sort
+                         return this.rank - s.rank;               -- here only rank is sort
+
+                       
+                       }
+
+                       @Override
+                       public String toString(){
+                         return "Student[id = " + id + " , name = " + name +" , rank = " +rank +"]";
+                       }
+                }
+
+
+                Here
+                =====
+                      @Override
+                       public int compareTo(Student s){
+                       return this.id - s.id;      // here values are subtracting for sorting
+                       //cirrent class object with given object
+
+                StudentDemo class
+                #################
+
+
+                public class StudentDemo{
+                    public static void main(String[] args){
+
+                    List<Student> al = new ArrayList<>();
+                    al.add( new Student( 101 , "John" , 3));
+                    al.add( new Student( 104 , "Anil" , 4));
+                    al.add( new Student( 102 , "Smith" , 2));
+                    al.add( new Student( 103 , "Robert" , 1));
+
+                    Collections.sort(al);
+
+                    for(Student s : al){
+                    System.out.println(s);
+                    }
+                  }
+                }
+
+             -here 
+                 1st class must be implement Comparable Interface
+                 2nd override compareT0() method must be override in that method
+
+======================================
+
+
+
+
+     Comparator 
+     ###########
+
+            - Comparator is a predefine interface available in java.util package.
+
+            - Comparator interface having compare() method
+
+            - compare( Object obj1 , Object obj2)
+
+            - If you want to sort your object along with multiple properties then use 
+              Comparator interface
+ 
+
+         
+         Example:
+         ===========
+ ==============================
+         
+        Employee.class
+        =================
+
+          public class Employee{
+
+              int id;
+              String name;
+              double salary;
+
+              public Employee( int id , String name , double salary){
+
+                  super();
+                  this.id = id;
+                  this.name = name;
+                  this.salary = salary;
+              }
+
+              @Override
+              public String toString(){
+                   return "Employee [ id = "+ id + ", name =" + name + " , salary =" + salary + "]";
+              }
+          }
+
+
+        EmpDemo.class
+        ==============
+
+        public class EmpDemp{
+              public static void main(String[] args){
+
+                ArrayList<Employee> emps = new ArrayList<>();
+                emps.add( new Employee(101 , "David" , 15000.0));
+                emps.add( new Employee(103 , "Putin" , 35000.0));
+                emps.add( new Employee(104 , "Cathy" , 45000.0));
+                emps.add( new Employee(102 , "Annay" , 25000.0));
+
+             //Assending order 
+
+              Collections.sort(emps, new Comparator<Employee>(){
+
+                @Override
+                public int compare(Employee e1 , Employee e2){
+                return e1.id - e2.id;  // this logic sort by id
+
+                // 2-4=-2 which is small number , like this
+                }
+              });
+             
+             //Decending order
+
+              Collections.sort(emps, new Comparator<Employee>(){
+
+                @Override
+                public int compare(Employee e1 , Employee e2){
+                  if(e1.id > e2.id){
+                        return 1;
+                  } else if(e1.id < e2.id){
+                        return -1;
+                  }else{
+                        return 0;
+                  }
+                }
+              });
+
+              // for salary  sorting 
+
+              Collections.sort(emps, new Comparator<Employee>(){
+
+                @Override
+                public int compare(Employee e1 , Employee e2){
+                  if(e1.salary > e2.salary){
+                        return 1;
+                  } else if(e1.salary < e2.salary){
+                        return -1;
+                  }else{
+                        return 0;
+                  }
+                }
+              });
+
+
+               // to print data 
+
+                for(Employee e : emps){
+                System.out.println(e);
+                }
+              }
+        }
+
+
+
+         #############################################
+         Difference between Comparable and Comparator 
+         #############################################
+
+         Comparable                                            Comparator
+         ##########                                            ##########
+
+    - Comparable  is a predefine interface          - Comparator is a predefine interface 
+      available in java.lang package.                 available in java.util package.
+
+    - Comparable interface having compareTo()       - Comparator interface having compare()
+      method.                                          method.
+
+    - compareTo(Object obj) object we have to       - compare( Object obj1 , Object obj2)
+      pass in this method as a parameter
+
+    - Comparable interface will allow us to sort    - If you want to sort your object along 
+      the data based on only one value.               with multiple properties then use 
+                                                      Comparator interface    
+                      
+    - If we want to change our sorting technique 
+      then we need to modify the class which is
+      implementing Comparable interface.
+
+    - To overcome these problem we will go for 
+      Comparator interface.
+
+    - Because Modifing the every time is not
+      recommended
+
+
+
+
+
+      ###################################
+      Fail Fast and Fail Safe Collections
+      ###################################
+
+
+
+      - Collections are divided into two types
+
+         1) Fail Fast Collections
+         2) Fail Safr Collections
+
+      - Fail Fast Collections will throw error immediately when we modify collection 
+        object while traversing the collection.
+
+        Ex: ArrayList , LinkList , HashSet , etc
+
+      - Note: Fail Fast Collection will throw error ConcurrentModificationException
+              when we modified
+
+
+
+
+     - Fail Safe Collections will not throw any  error if we modify collection object data
+       (Add / Remove) whilw traversing 
+
+       Ex : CopyOnWriteArrayList  , ConcurrentHashMap  , IdentityHashMap  ,  etc....
+
+===========================
+
+       public class Demo{
+
+           public static void main(String[] args){
+            CopyOnWriteArrayList<Integer> al = new CopyOnWriteArrayList<>();
+
+            al.add(100);
+            al.add(200);
+            al.add(300);
+            al.add(400);
+            al.add(500);
+
+            for(int i : al){
+            System.out.println(i);
+
+            if(i == 100){
+            al.add(150);
+            }
+
+         }
+         System.out.println(al);
+        }
+       }
+==============================
+
+      public class Demo2{
+          public static void main(String[] args){
+
+          ConcurrentHashMap<Integer ,String> map = new ConcurrentHashMap<>();
+
+          map.put(101 , "One"); 
+          map.put(102 , "Two"); 
+          map.put(103 , "Three"); 
+
+          Set<Integer> keySet = map.keySet();
+          Iteractor<Integer> iterator = keySet.iterator();
+          while(iterator.hashNext()){
+             System.out.println(iterator.next());
+             map.put(104 , "Four");
+          }
+          System.out.println(map);
+          }
+      }
+=================================
+
+
+      IdentityHashMap
+      ###############
+
+      public class Demo{
+
+          public static void main(String[] args){
+
+          HashMap<String , Integer> hm = new HashMap<>();
+            // HM will compare content of keys to find dublicate keys( by using equals())
+          hm.put("ashok" , 101);  // 1 entry added
+          hm.put("raja" , 102);  // 1 entry added
+          hm.put("rani" , 103);  // 1 entry added
+          hm.put(new String("ashok") , 104);  // It will replace first entry value bcz key is duplicate
+
+          System.out.println("HM - size id :" hm.size());
+          System.out.println(hm);
+
+          System.out.println("===========================");
+
+
+
+          IdentityHashMap<String , Integer> ihm = new IdentityHashMap<>();
+
+            // IHM will compare address of keys to find dupicate keys(using == operator)
+
+          ihm.put("ashok" , 101);   // 1 entry added
+          ihm.put("raja" , 102);   // 1 entry added
+          ihm.put("rani" , 103);   // 1 entry added
+          ihm.put( new String("ashok" ), 104);   
+          ihm.put("ashok" , 105);   // it will replace first entry value
+
+          System.out.println("IHM - size id :" ihm.size());
+          System.out.println(ihm);
+
+
+
+
+
+          }
+      }
+
+================================
+
+
+
+            ##############################################
+            Difference between HashMap and IdentityHashMap
+            #############################################
+
+
+            HasMap
+            ######
+
+            -> HashMap will use equals() method to compare content of keys to find duplicate keys
+
+            -> IdentityHashMap will use == operator to compare address of keys to find duplicate keys
+
+
+
+
+            ###########################################
+            Difference between HashMap and WeakHashMap
+            ##########################################
+
+            -> HashMap keys will have string refrence that means  they will maintain a 
+               refrence hence they are not eleigible for Garbage collector
+
+            -> WeakHashMap keys have week refrence that means they are eligible for Garbage 
+               Collection
+
+            -> Garbage collection dominate WeakHashMap
+
+
+
+            java.util package  : these are remaining classes of util package
+            ################
+
+            java.util.Scanner  // not part of collections , they are part of util package
+            java.util.StringTokenizer
+            java.util.Date   // In java8 , Date class is changed
+            java.util.Calender
+           
+
+           Date d = new Date()     // outdated
+           sysout(d);
+
+           Calender c = Calender().getInstance();      // outdated
+           
+           sysout(c.get(Calender.YEAR));
+
+
+
+
+
+
+            Summary of Collections
+            ##########################
+
+            1) Why collections
+            2) What is collections
+            3) What is Collection Framework
+            4) Collections Hierarchy
+            5) List Interface
+                 a) ArrayList
+                 b) LinkedList
+                 c) Vector 
+                 d) Stack
+            6) Set interface
+                 a) HashSet
+                 b) LinkedHashSet
+                 c) TreeSet
+            7) Queue
+                 a) PriorityQueue
+                 b) ArrayDeque
+            8) Cursors
+                 a) Iterator
+                 b) ListIterator
+                 c) Enumeration
+            9) Collection (I) and Collections(C)
+            10) Map Interface 
+                 a)HashMap
+                 b)LinkedHashMap
+                 c) TreeMap
+                 d) Hashtable
+                 e) IdentityHashMap
+                 d) WeakHashMap
+
+            11) Collections Sorting
+
+                 a) java.lang.Comparable  - compareTo()
+                 b) java.util.Comparator  - compare(obj1 , obj2)
+
+            12) Properties class
